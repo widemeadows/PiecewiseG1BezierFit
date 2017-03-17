@@ -71,9 +71,8 @@ GOC = globop(IG, Qt, 0, k);
 
 ## Examples
 ### Fit to data sampled from an existing Bézier curve (*n* = 3)
-In this example, we generate a cubic Bézier with four control points. Then we try to fit it with n knot points, leading to n-1 cubic Bézier
-sections or 3*(n-1)+1 control points in all. So, first we define control points to generate data.  These control points
-define a Bézier curve described in:
+In this example, we generate a cubic Bézier with four control points. Then we try to fit it with *n*=3 knot points, leading to *n*-1=2 cubic Bézier
+sections or 3*(*n*-1)+1=7 control points in all.  Since we are starting with a sampled Bézier, we have simply approximated the (exact) single subdivision of a single Bézier curve.  So, first we define control points to generate data.  These control points define a Bézier curve described in:
 > *Solving the Nearest Point-on-Curve Problem* and
 > *A Bezier Curve-Based Root-Finder*,
 > both by Philip J. Schneider
@@ -95,14 +94,15 @@ Each piecewise cubic segment is drawin in a different color, along with the conv
 ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example1.png "Credit: Eric Rehm, Université Laval")
 
 ### Piecewise cubic fit to a Lissajous figure (*n* = 3)
-Here's an example of using just three knot points (chosen automatically by the code) to fit two cubic Bézier segments to a Lissajous figure.
+Here's an example of using just three knot points (chosen automatically by the code) to fit two cubic Bézier segments to a Lissajous figure.  If you look carefully at the top (where the Lissajous figure starts and stops), you will see a mismatch.  An exercise for the reader would be to specify the *n*=3 knot points directly, with the first and last knot points coinciding. 
 
 Each piecewise cubic segment is drawin in a different color, along with the convex hull of the new control points found by the algorithm.
 ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example2.png "Credit: Eric Rehm, Université Laval")
 
 ### Piecewise cubit fit to two cycles of a sine wave (*n* = 5)
-Each piecewise cubic segment is drawin in a different color, along with the convex hull of the new control points found by the algorithm.
-![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example3.png "Credit: Eric Rehm, Université Laval")
+Another exercise for the reader would be to plot the RMS error in this approximation to a sine wave.  One could view this as a form of compression.
+
+Each piecewise cubic segment is drawin in a different color, along with the convex hull of the new control points found by the algorithm. ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example3.png "Credit: Eric Rehm, Université Laval")
 
 ## Dependenciees
 The demo code (`BezierFitDemo.m`) depends on the geom2D Toolbox to draw Bézier curves. geom2D requires MATLAB R2014b or later. 
