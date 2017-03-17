@@ -37,7 +37,7 @@ Qt = Q';
 ```matlab
 SOC = segop(k, Qt, IG);
 ```
-3. The SOC passed to a global optimizer (`globop.m`) which adjusts the control points for each cubic Bézier segment to minimize the total least-square error, producing the segmentially the globally optmized curve (GOC).
+3. The SOC passed to a global optimizer (`globop.m`) which adjusts the control points for each cubic Bézier segment to minimize the total least-square error, producing the segmentally then globally optmized curve (GOC).
 ```matlab
 GOC = globop(SOC, Qt, 0, k);
 ```
