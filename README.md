@@ -29,10 +29,10 @@ The algorithm proceeds as follows in the demonstration code (`BezierFitDemo.m`),
         n = 3;  % Starting number of knot points
 ```	
 1. Produce an initial guess (IG) curve (`iguess0.m`). The IG curve is constructed geometrically from the knot points and the tangent(s).  The IG curve is not optimized with respect to all of the data. 
-```matlab
-        Qt = Q';'
+
+        Qt = Q';
         [IG, k] = iguess0(Qt, n);
-```
+
 2. The IG curve is passed to a segment-wise optmization routine (`segop.m`).  This minimizes the distance between the each cubic Bézier segment and the data points, i.e., a piecewise least-squares solution or segmentally-optimized curve (SOC).
 ```matlab
 SOC = segop(k, Qt, IG);
