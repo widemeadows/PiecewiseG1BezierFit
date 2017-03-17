@@ -1,8 +1,11 @@
 # How to fit a Bezier curve to a set of data?
 
+## Background
+This question was originally asked in a StackOverflow posting
+http://stackoverflow.com/questions/6299019/how-can-i-fit-a-b%C3%A9zier-curve-to-a-set-of-data/32723564#32723564
+
 ## Introduction
 Say you have a set of data points to which you would like to fit a Bezier curve in piecewise fashion.
-
 There's a nice solution dating from 1995, complete with MATLAB code, that does this with G1 continuity.
 
  Lane, Edward J. *Fitting Data Using Piecewise G1 Cubic Bezier Curves.*
@@ -47,18 +50,18 @@ https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d
 * G0: Pieces are connected at endpoints.
 * G1: Pieces are connected and have same unit tangent vector at endpoints.
 * G2: Pieces are connected, have same unit tangent vector, and same curvature at endpoints.
- Gn implies all lower Gi.
+
+Gn implies all lower Gi.
 
 
 * C0: Pieces are connected at endpoints = G0.
 * C1: Pieces are connected and have same unit velocity vector (tangent vector is not normalized in length).
 * C2: Pieces are connected, have same unit velocity vector, and same acceleartion at endpoints.
- Cn implies all lower Ci.
+
+
+Cn implies all lower Ci.
 
 
 ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Continuity.jpg "Credit: Carlo Séquin, EECS, UC Berkeley")
 
-## Background
-This question was originally asked in a StackOverflow posting
-http://stackoverflow.com/questions/6299019/how-can-i-fit-a-b%C3%A9zier-curve-to-a-set-of-data/32723564#32723564
 
