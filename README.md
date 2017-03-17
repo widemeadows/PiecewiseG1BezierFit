@@ -25,33 +25,27 @@ To use this you must, at minimum, specify the number of end (knot) points *n*.  
 The algorithm proceeds as follows in the demonstration code (`BezierFitDemo.m`), where *Q* is an [Mx2] array of data points.
 
 1. Select the number of knot points *n*.
-
 ```matlab
 n = 3;  % Starting number of knot points
 ```	
 1. Produce an initial guess (IG) curve (`iguess0.m`). The IG curve is constructed geometrically from the knot points and the tangent(s).  The IG curve is not optimized with respect to all of the data. 
-
 ```matlab
 Qt = Q';'
 [IG, k] = iguess0(Qt, n);
 ```
 2. The IG curve is passed to a segment-wise optmization routine (`segop.m`).  This minimizes the distance between the each cubic Bézier segment and the data points, i.e., a piecewise least-squares solution or segmentally-optimized curve (SOC).
-
 ```matlab
 SOC = segop(k, Qt, IG);
 ```
-3. The SOC passed to a global optimizer (`globop.m`) which adjusts the control points for each cubit Bézier segment to minimize the total least-square error, producing the segmentially the globally optmized curve (GOC).
-
+3. The SOC passed to a global optimizer (`globop.m`) which adjusts the control points for each cubic Bézier segment to minimize the total least-square error, producing the segmentially the globally optmized curve (GOC).
 ```matlab
 GOC = globop(SOC, Qt, 0, k);
 ```
 4.  The GOC is plotted using an internal plotting routine (`poplt.m`), along with the original data points.
-
 ```matlab
 hgoc = poplt(GOC, Qt);
 ```
 5.  The GOC is plotted again using the open source MATLAB [geom2D Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d) Bézier plotting routine `drawBezierCurve.m`. This demonstrates how to successively plot each cubic Bézier segment from the list of SGO control points extracted using cpoints(GOC).
-
 ```matlab
 Cnew = cpoints(GOC)';
 for i = 1:3:length(Cnew)-3
@@ -60,7 +54,6 @@ for i = 1:3:length(Cnew)-3
 end
 ```
 6. Note that a Globally Optmized Only (GOO) curve could be produced by sending the initial guess (IG) to the global optmizer, e.g.,
-
 ```matlab
 GOC = globop(IG, Qt, 0, k);
 ```
@@ -100,7 +93,7 @@ Here's an example of using just three knot points (chosen automatically by the c
 Each piecewise cubic segment is drawin in a different color, along with the convex hull of the new control points found by the algorithm.
 ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example2.png "Credit: Eric Rehm, Université Laval")
 
-### Piecewise cubit fit to two cycles of a sine wave (*n* = 5)
+### Piecewise cubic fit to two cycles of a sine wave (*n* = 5)
 Another exercise for the reader would be to plot the RMS error in this approximation to a sine wave.  One could view this as a form of compression.
 
 Each piecewise cubic segment is drawin in a different color, along with the convex hull of the new control points found by the algorithm. ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example3.png "Credit: Eric Rehm, Université Laval")
