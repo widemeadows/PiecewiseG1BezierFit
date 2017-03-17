@@ -18,7 +18,7 @@ function BezierFitDemo
 demo = 1;
 
 switch demo
-    case 2     
+    case 1     
         % In this example, we generate a cubic Bézier with four control points.
         % Then we try to fit it with n knot points, leading to n-1 cubic Bézier
         % sections or 3*(n-1)+1 control points in all.
