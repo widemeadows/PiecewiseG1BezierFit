@@ -5,10 +5,12 @@ This question was originally asked in a StackOverflow posting
 http://stackoverflow.com/questions/6299019/how-can-i-fit-a-b%C3%A9zier-curve-to-a-set-of-data/32723564#32723564
 
 ## Introduction
-Say you have a set of data points to which you would like to fit a Bezier curve in piecewise fashion.
+Say you have a set of data points to which you would like to fit cubic Bezier curves in a piecewise fashion.
 There's a nice solution dating from 1995, complete with MATLAB code, that does this with G1 continuity.
+I have reimplemented the code, updating it to modern MATLAB (R2015b).
 
->  Lane, Edward J. *Fitting Data Using Piecewise G1 Cubic Bezier Curves.*
+
+>  Lane, Edward J. *Fitting Data Using Piecewise G1 Cubic Bezier Curves*
 
 
 >  Thesis, NAVAL POSTGRADUATE SCHOOL MONTEREY CA, 1995
@@ -18,7 +20,7 @@ There's a nice solution dating from 1995, complete with MATLAB code, that does t
 
 To use this, you must, at minimum, specify the number of knot points, i.e., the number data points that will be used by the optimization routines to make this fit. Optionall, you can specify the knot points themselves, which increases the reliability of a fit. The thesis shows some pretty tough examples. Note that Lane's approach guarantees G1 continuity (directions of adjacent tangent vectors are identical) between the cubic Bézier segments, i.e., smooth joints. However, there can be discontinuities in curvature (changes in direction of second derivative).
 
-I have reimplemented the code, updating it to modern MATLAB (R2015b).
+
 
 ## Examples
 
@@ -44,9 +46,22 @@ define a Bezier curve described in:
             4     2];
 ```	    
 
-### Piecewise fit to a Lissajous Figure
+Each piecewise cubic segment is drawin in a different color, along with the new control points found by the algorithm.
+![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example1.png "Credit: Eric Rehm, Université Laval")
+
+### Piecewise cubic fit to a Lissajous Figure
 
 Here's an example of using just three knot points (chosen automatically by the code) the fits two cubic Bézier segments to a Lissajous figure.
+
+Each piecewise cubic segment is drawin in a different color, along with the new control points found by the algorithm.
+![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example2.png "Credit: Eric Rehm, Université Laval")
+
+### Piecewise cubit fit to a sine wave
+
+
+
+Each piecewise cubic segment is drawin in a different color, along with the new control points found by the algorithm.
+![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example3.png "Credit: Eric Rehm, Université Laval")
 
 ## Dependenciees
 This code depends on the geom2D Toolbox to draw Bezier curves.
