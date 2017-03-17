@@ -25,9 +25,9 @@ To use this you must, at minimum, specify the number of end (knot) points *n*.  
 The algorithm proceeds as follows in the demonstration code (`BezierFitDemo.m`), where *Q* is an [Mx2] array of data points.
 
 1. Select the number of knot points *n*.
-```matlab
-n = 3;  % Starting number of knot points
-```	
+        ```matlab
+        n = 3;  % Starting number of knot points
+        ```	
 1. Produce an initial guess (IG) curve (`iguess0.m`). The IG curve is constructed geometrically from the knot points and the tangent(s).  The IG curve is not optimized with respect to all of the data. 
         ```matlab
         Qt = Q';'
