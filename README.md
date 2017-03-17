@@ -21,7 +21,7 @@ The solution constructs a piecewise G<sup>1</sup> cubic Bézier curve from cubic
 To use this you must, at minimum, specify the number of end (knot) points *n*.  This can be selected by trial and error, remembering that each cubie Bézier segment can represent at most two points of inflection.  Optionall, you can specify the knot points themselves, which increases the reliability of a fit. The thesis shows some pretty tough examples, some of which are shown below.   Note that Lane's approach guarantees G<sup>1</sup> continuity (directions of adjacent tangent vectors are identical) between the cubic Bézier segments, i.e., smooth joints. However, there can be discontinuities in curvature (changes in direction of second derivative).
 
 ## Brief description of the Lane 1995 algorithm
-The algorithm proceeds as follows in the demonstration code (**BezierFitDemo.m**), where *Q* is an [Mx2] array of data points.
+The algorithm proceeds as follows in the demonstration code (`BezierFitDemo.m`), where *Q* is an [Mx2] array of data points.
 
 1. Select the number of knot points *n*.
 
@@ -63,7 +63,7 @@ end
 ```matlab
 GOC = globop(IG, Qt, 0, k);
 ```
- This does not tend to produce a good result, so it is omitted in the demonstration code (`BézierFitDemo.m`)
+ This does not tend to produce a good result, so it is omitted in the demonstration code (`BezierFitDemo.m`)
 
 
 
