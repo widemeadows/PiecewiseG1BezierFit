@@ -60,10 +60,6 @@ GOC = globop(IG, Qt, 0, k);
 ```
  This does not tend to produce a good result, so it is omitted in the demonstration code (`BezierFitDemo.m`)
 
-
-
-
-
 ## Examples
 ### Fit to data sampled from an existing Bézier curve (*n* = 3)
 In this example, we generate a cubic Bézier with four control points. Then we try to fit it with *n*=3 knot points, leading to *n*-1=2 cubic Bézier
