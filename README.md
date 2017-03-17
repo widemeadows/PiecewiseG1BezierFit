@@ -21,27 +21,30 @@ The solution constructs a piecewise G<sup>1</sup> cubic Bézier curve from cubic
 To use this you must, at minimum, specify the number of end (knot) points *n*.  This can be selected by trial and error, remembering that each cubie Bézier segment can represent at most two points of inflection.  Optionall, you can specify the knot points themselves, which increases the reliability of a fit. The thesis shows some pretty tough examples, some of which are shown below.   Note that Lane's approach guarantees G<sup>1</sup> continuity (directions of adjacent tangent vectors are identical) between the cubic Bézier segments, i.e., smooth joints. However, there can be discontinuities in curvature (changes in direction of second derivative).
 
 ## Brief description of the Lane 1995 algorithm
-The algorithm proceeds as follows in the demonstration code (BezierFitDemo.m), where *Q* is an [Mx2] array of data points.
+The algorithm proceeds as follows in the demonstration code (**BezierFitDemo.m**), where *Q* is an [Mx2] array of data points.
 
 1. Select the number of knot points *n*.
-
-1. Produce an initial guess (IG) curve (iguess0.m). The IG curve is constructed geometrically from the knot points and the tangent(s).  The IG curve is not optimized with respect to all of the data. 
+```matlab
+n = 3;  % Starting number of knot points
+```	
+1. Produce an initial guess (IG) curve (**iguess0.m**). The IG curve is constructed geometrically from the knot points and the tangent(s).  The IG curve is not optimized with respect to all of the data. 
 ```matlab
 Qt = Q';'
+[IG, k] = iguess0(Qt, n);
 ```
-2. The IG curve is passed to a segment-wise optmization routine (segop.m).  This minimizes the distance between the each cubic Bézier segment and the data points, i.e., a piecewise least-squares solution or segmentally-optimized curve (SOC).
+2. The IG curve is passed to a segment-wise optmization routine (**segop.m**).  This minimizes the distance between the each cubic Bézier segment and the data points, i.e., a piecewise least-squares solution or segmentally-optimized curve (SOC).
 ```matlab
 SOC = segop(k, Qt, IG);
 ```
-3. The SOC passed to a global optimizer (globop.m) which adjusts the control points for each cubit Bézier segment to minimize the total least-square error, producing the segmentially the globally optmized curve (GOC).
+3. The SOC passed to a global optimizer (**globop.m**) which adjusts the control points for each cubit Bézier segment to minimize the total least-square error, producing the segmentially the globally optmized curve (GOC).
 ```matlab
 GOC = globop(SOC, Qt, 0, k);
 ```
-4.  The GOC is plotted using an internal plotting routine (poplt.m), along with the original data points.
+4.  The GOC is plotted using an internal plotting routine (**poplt.m**), along with the original data points.
 ```matlab
 hgoc = poplt(GOC, Qt);
 ```
-5.  The GOC is plotted again using the open source MATLAB [geom2D Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d) Bézier plotting routine (drawBezierCurve.m). This demonstrates how to successively plot each cubic Bézier segment from the list of SGO control points extracted using cpoints(GOC).
+5.  The GOC is plotted again using the open source MATLAB [geom2D Toolbox](https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d) Bézier plotting routine **drawBezierCurve.m**. This demonstrates how to successively plot each cubic Bézier segment from the list of SGO control points extracted using cpoints(GOC).
 ```matlab
 Cnew = cpoints(GOC)';
 for i = 1:3:length(Cnew)-3
@@ -50,12 +53,10 @@ for i = 1:3:length(Cnew)-3
 end
 ```
 6. Note that a Globally Optmized Only (GOO) curve could be produced by sending the initial guess (IG) to the global optmizer, e.g.,
-
 ```matlab
 GOC = globop(IG, Qt, 0, k);
 ```
-
-This does not tend to produce a good result, so it is omitted in the demonstration code (BézierFitDemo.m)
+ This does not tend to produce a good result, so it is omitted in the demonstration code (**BézierFitDemo.m**)
 
 
 
@@ -97,7 +98,7 @@ Each piecewise cubic segment is drawin in a different color, along with the conv
 ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Example3.png "Credit: Eric Rehm, Université Laval")
 
 ## Dependenciees
-The demo code (BezierFitDemo.m) depends on the geom2D Toolbox to draw Bézier curves. geom2D requires MATLAB R2014b or later. 
+The demo code (**BezierFitDemo.m**) depends on the geom2D Toolbox to draw Bézier curves. geom2D requires MATLAB R2014b or later. 
 
 
 https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d
