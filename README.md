@@ -1,4 +1,5 @@
 # How to fit a Bézier curve to a set of data?
+Eric Rehm, Takuvik Joint Laboratory, Université Laval / CNRS, Québec
 
 ## Background
 This question was originally asked in a StackOverflow posting
