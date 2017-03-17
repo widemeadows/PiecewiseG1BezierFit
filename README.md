@@ -54,11 +54,10 @@ for i = 1:3:length(Cnew)-3
 end
 ```
 6. Note that a Globally Optmized Only (GOO) curve could be produced by sending the initial guess (IG) to the global optmizer, e.g.,
-
 ```matlab
 GOC = globop(IG, Qt, 0, k);
 ```
- This does not tend to produce a good result, so it is omitted in the demonstration code (`BezierFitDemo.m`)
+    This does not tend to produce a good result, so it is omitted in the demonstration code (`BezierFitDemo.m`)
 
 ## Examples
 ### Fit to data sampled from an existing Bézier curve (*n* = 3)
