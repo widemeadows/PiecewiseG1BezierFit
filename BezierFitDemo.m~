@@ -5,9 +5,8 @@ function BezierFitDemo
 % Lane, Edward J. Fitting Data Using Piecewise G1 Cubic Bezier Curves.
 % Thesis, NAVAL POSTGRADUATE SCHOOL MONTEREY CA, 1995.
 %
-% This code depends on the geom2D Toolbox which requires MATLAB R2014b or
-% later.
-% https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d
+
+
 
 
 % Demonstrate two different Bezier curve fits
@@ -24,16 +23,14 @@ switch demo
         % sections or 3*(n-1)+1 control points in all.
         % Define control points to generate data.  The control points
         % define a Bezier curve defined in:
-        % "Solving the Nearest Point-on-Curve Problem" and
-        % "A Bezier Curve-Based Root-Finder", both by Philip J. Schneider
+        % "Solving the Nearest Point-on-Curve Problem and
+        % A Bezier Curve-Based Root-Finder by Philip J. Schneider
         % from "Graphics Gems", Academic Press, 1990
         % http://www.realtimerendering.com/resources/GraphicsGems/gems/NearestPoint.c
-        
         C =[0     0;
             1     2;
             3     3;
             4     2];
-        
         % Generate a cubice Bézier polyline data with these control points
         Q = cubicBezierToPolyline(C, 65);
         n = 3;  % Starting number of knot points
