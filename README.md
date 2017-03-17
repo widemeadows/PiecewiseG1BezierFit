@@ -47,7 +47,7 @@ https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d
 
 ## Background on continuity
 
-* G0: Pieces are connected at endpoints.
+* G<sup>0</sup>: Pieces are connected at endpoints.
 * G1: Pieces are connected and have same unit tangent vector at endpoints.
 * G2: Pieces are connected, have same unit tangent vector, and same curvature at endpoints.
 
