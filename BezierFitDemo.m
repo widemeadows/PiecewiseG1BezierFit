@@ -18,7 +18,7 @@ function BezierFitDemo
 demo = 1;
 
 switch demo
-    case 0     
+    case 2     
         % In this example, we generate a cubic Bézier with four control points.
         % Then we try to fit it with n knot points, leading to n-1 cubic Bézier
         % sections or 3*(n-1)+1 control points in all.
@@ -37,13 +37,13 @@ switch demo
         % Generate a cubice Bézier polyline data with these control points
         Q = cubicBezierToPolyline(C, 65);
         n = 3;  % Starting number of knot points
-    case 1
+    case 2
         % Or, try a Lissajous figure:
         theta = 0:0.05:2*pi;
         x = sin(2*theta); y = cos(theta);
         Q(:,1) = x;  Q(:,2) = y;
         n = 3;  % Starting number of knot points
-    case 2
+    case 3
         % Or two cycles of a sine wave
         theta = 0:0.05:4*pi;
         x = theta; y = cos(theta);
@@ -52,6 +52,8 @@ switch demo
 end
 
 % Now try to do a piecewise cubic Bézier fit to Q starting with n knot points
+% This computes the globally optimized only (GOO) curvve.
+% (The plotting of the IG curve in iguess0.m can be commented out.)
 Qt = Q';
 [IG, k] = iguess0(Qt, n);
 
@@ -63,7 +65,7 @@ GOC = globop(SOC, Qt, 0, k);
 
 % plot SGO curve using internal routine
 figure;
-hf = poplt(GOC, Qt);
+hp = poplt(GOC, Qt);
 title('Plot of SGO curve')
 
 % This section of code simply repeats the plot above (poplt) in a
@@ -74,14 +76,16 @@ Cnew = cpoints(GOC)';
 P    = knots(Qt, k)';
 
 % Plot fitted, segment by segment using Geom2D toolkit
-figure;
+figure; 
 hold on;
 for i = 1:3:length(Cnew)-3
     disp(i:i+3)
-    drawBezierCurve(Cnew(i:i+3,:));
+    drawBezierCurve(Cnew(i:i+3,:));      % Fitted cubic bezier segment
 end
 hc = plot(Cnew(:,1), Cnew(:,2), 'o-');   % Control points
-% plot(Q(:,1), Q(:,2), '+');          % Original data
+ho = plot(Q(:,1), Q(:,2), 'k.');           % Original data
 hn = plot(P(:,1), P(:,2), 'kx', 'markerSize', 10);   % Original knot points
-legend([hn hc], 'Original n knots', 'New control points');
-
+legend([ho hn hc], 'Original data', ...
+    sprintf('Original guess n = %d knots',n), ...
+    'New control points');
+set(gcf, 'color', 'w');

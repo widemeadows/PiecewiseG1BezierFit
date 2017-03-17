@@ -20,10 +20,10 @@ if nargin < 3
     k = defk(m,n); % Calls for default knot position.
 end
 
-dpkpc = k; 		% Position of knot points passed globally.
+dpkpc = k; 		    % Position of knot points passed globally.
 P   = knots(Q,k); 	% call to compute the knotpoints.
-dt  = distEJL(P); 		% Call to compute the distance between
-% successive ve knot points.
+dt  = distEJL(P); 	% Call to compute the distance between
+                    % successive knot points.
 
 ang = tang(Q,k); 	% Call to compute the angles for
 % the unit tangent vectors.
@@ -31,8 +31,10 @@ ang = tang(Q,k); 	% Call to compute the angles for
 C   = ctpts(P,ang,dt);	% Call to compute the control points;
 % for the curve.
 
-% pltC(C,Q,P); 		% Call to plot the initial guess curve,
+figure;
+pltC(C,Q,P); 		% Call to plot the initial guess curve,
 % its control polygon, and points in Q.
+title('Plot of Initial Guess curve');
 
 % Assemble the composite vector of the initial guess curve parameters
 IG = [P(1,:) P(2,:) ang dt(1,:) dt(2,:)];
