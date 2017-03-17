@@ -48,18 +48,19 @@ https://www.mathworks.com/matlabcentral/fileexchange/7844-geom2d
 ## Background on continuity
 
 * G<sup>0</sup>: Pieces are connected at endpoints.
-* G1: Pieces are connected and have same unit tangent vector at endpoints.
-* G2: Pieces are connected, have same unit tangent vector, and same curvature at endpoints.
-
-Gn implies all lower Gi.
+* G<sup>1</sup>: Pieces are connected and have same unit tangent vector at endpoints.
+* G<sup>2</sup>: Pieces are connected, have same unit tangent vector, and same curvature at endpoints.
 
 
-* C0: Pieces are connected at endpoints = G0.
-* C1: Pieces are connected and have same unit velocity vector (tangent vector is not normalized in length).
-* C2: Pieces are connected, have same unit velocity vector, and same acceleartion at endpoints.
+G<sup>n</sup> implies all lower G<sup>i</sup>.
 
 
-Cn implies all lower Ci.
+* C<sup>0</sup>: Pieces are connected at endpoints = G0.
+* C<sup>1</sup>: Pieces are connected and have same unit velocity vector (tangent vector is not normalized in length).
+* C<sup>2</sup>: Pieces are connected, have same unit velocity vector, and same acceleartion at endpoints.
+
+
+C<sup>n</sup> implies all lower C<sup>i</sup>.
 
 
 ![Continuity](https://gitlab.com/erehm/PiecewiseG1BezierFit/raw/master/images/Continuity.jpg "Credit: Carlo Séquin, EECS, UC Berkeley")
